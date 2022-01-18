@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pull data to database</title>
+    <title>Sent!</title>
+   
+</head>
+<body>
+  
+  <!-- As a heading -->
+  
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    
+    <span class="navbar-brand mb-0 h1">For Administrative Use Only!!!</span>
+  </div>
+</nav><br>
+<h4 class="text_center">ELECTRONIC MAIL CONTACT FORM</h4>
+  {% block content %}
+  
+  <div class="container">
+  <form method="post" class="was-validated">
+    {% csrf_token %}
+    <div class="form-group">
+    <label for="fname">Sender:</label>
+    <input name='name' type="text", id="fname" class="form-control" placeholder="sender name..." required>
+
+    <label for="exampleInputEmail1">Recepient:</label>
+    <input name='email' class="form-control" id="exampleInputEmail1" placeholder="recepient email..." aria-describedby="emailHelp" required>
+
+    <label for="subject">Subject:</label>
+    <textarea name='subject' class="form-control" id="subject" name="subject" placeholder="write something..." style="height:20px" required></textarea>
+      
+    <input type="submit" style="background-color:green; border-color:orange; color:white" class="btn btn-success btn-lg mt-1 ml-4" value="Send Email Now!">
+  </div>
+
+  </form>
+</div>
+</table>
+<hr/>
+<center>
+    <h1>Real estate dashboard to fetch and view records from sqlite using django</h1>
+    <h2>sqlite_django webapp</h2>
+    
+    <hr/>
+  <h3 class="text-center"><u>Total Number Of Real Estate Sales</u></h3><br>
+    count of all goods : {{bien_immo}}
+    
+    <hr/>
+  <h3 class="text-center"><u>Real Estate Price Variation Per Ville</u></h3><br>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Ville</th>
+        <th>Price Standard Deviation</th>
+      </tr>
+    </thead>
+  <tbody>
+
+    {% for s in std %}
+      <tr>
+        <td>{{s.ville}}</td>
+        <td>{{s.prix_m2_ttc}}</td>
+
+      </tr>
+      {% endfor %}
+      
+  </tbody>
+  </table>
+
+  <hr/>
+  <h3 class="text-center"><u>Real Estate Average Price Per Ville</u></h3><br>
+  
+  <table border= "1">
+    <thead>
+      <tr>
+        <th>Ville</th>
+        <th>Average Price</th>
+      </tr>
+    </thead>
+    
+  <tbody>
+
+    {% for m in mean %}
+      <tr>
+        <td>{{m.ville}}</td>
+        <td>{{m.prix_m2_ttc}}</td>
+
+      </tr>
+      {% endfor %}
+
+  </tbody>
+  </table>
+    <center>
+      <hr/>
+        <h3 class="text-center"><u>Real Estate Dashboard Without Balcony</u></h3><br>
+        
+        From :<input type="date" name="fromdate"/>
+        To :<input type="date" name="todate"/>
+        <input type="submit" value="Search"/>
+        <hr/>
+        <form method="POST">
+          {% csrf_token %}
+        <input type="radio" value="True" name="exterieur"/>True
+        <input type="radio" value="False" name="exterieur"/>False
+        <select name="typologie">
+          <option selected disabled=true>-- select typologie</option>
+          <option>Appartment</option>
+          <option>Maison</option>
+        </select>
+        <input type="submit" value="Search"/>
+        <hr/>
+        
+
+        <table border="1">
+          <tr>
+            <th>id</th>
+            <th>id_lot</th>
+            <th>nb_piece</th>
+            <th>typologie</th>
+            <th>prix_tva_reduite</th>
+            <th>prix_tva_normale</th>
+            <th>prix_HT</th>
+            <th>prix_m2_HT</th>
+            <th>prix_m2_TTC</th>
+            <th>orientation</th>
+            <th>exterieur</th>
+            <th>balcony</th>
+            <th>garden</th>
+            <th>parking</th>
+            <th>ville</th>
+            <th>departement</th>
+            <th>date_fin_programme</th>
+            <th>adresse_entiere</th>
+            <th>date_extraction</th>
+            <th>surface</th>
+            <th>etage</th>
+            <th>nom_programme</th>
+            <th>promoteur</th>
+        
+
+          </tr>
+          {% for i in posts%}
+          <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.id_lot}}</td>
+            <td>{{i.nb_piece}}</td>
+            <td>{{i.typologie}}</td>
+            <td>{{i.prix_tva_reduite}}</td>
+            <td>{{i.prix_tva_normale}}</td>
+            <td>{{i.prix_ht}}</td>
+            <td>{{i.prix_m2_ht}}</td>
+            <td>{{i.prix_m2_ttc}}</td>
+            <td>{{i.orientation}}</td>
+            <td>{{i.exterieur}}</td>
+            <td>{{i.balcony}}</td>
+            <td>{{i.garden}}</td>
+            <td>{{i.parking}}</td>
+            <td>{{i.ville}}</td>
+            <td>{{i.departement}}</td>
+            <td>{{i.date_fin_programme}}</td>
+            <td>{{i.adresse_entiere}}</td>
+            <td>{{i.date_extraction}}</td>
+            <td>{{i.surface}}</td>
+            <td>{{i.etage}}</td>
+            <td>{{i.nom_programme}}</td>
+            <td>{{i.promoteur}}</td>
+           
+          </tr>
+          {% endfor %}
+        </table>
+        </form>
+     </center>
+     {% endblock %}
+</body>
+</html>
